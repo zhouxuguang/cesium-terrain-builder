@@ -17,16 +17,6 @@ if(NOT ZLIB_FOUND)
 endif()
 include_directories(${ZLIB_INCLUDE_DIRS})
 
-add_library(ctb SHARED
-  GDALTile.cpp
-  GDALTiler.cpp
-  TerrainTiler.cpp
-  TerrainTile.cpp
-  GlobalMercator.cpp
-  GlobalGeodetic.cpp)
-target_link_libraries(ctb ${GDAL_LIBRARIES} ${ZLIB_LIBRARIES})
-
-# Install libctb
 set(HEADERS
   Bounds.hpp
   Coordinate.hpp
@@ -46,6 +36,19 @@ set(HEADERS
   TileCoordinate.hpp
   TilerIterator.hpp
   types.hpp)
+
+add_library(ctb SHARED
+  GDALTile.cpp
+  GDALTiler.cpp
+  TerrainTiler.cpp
+  TerrainTile.cpp
+  GlobalMercator.cpp
+  GlobalGeodetic.cpp
+  ${HEADERS})
+target_link_libraries(ctb ${GDAL_LIBRARIES} ${ZLIB_LIBRARIES})
+
+# Install libctb
+
 install(FILES ${HEADERS} DESTINATION include/ctb)
 install(FILES ctb.hpp DESTINATION include)
 

@@ -1,6 +1,11 @@
 cmake_minimum_required(VERSION 2.6)
 project("Cesium Terrain Builder")
 
+# 设置所有产物输出到 build 目录
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+
 # The version number
 set(CTB_VERSION_MAJOR 0)
 set(CTB_VERSION_MINOR 4)

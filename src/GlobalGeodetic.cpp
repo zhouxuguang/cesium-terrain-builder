@@ -27,7 +27,8 @@ using namespace ctb;
 static OGRSpatialReference
 setSRS(void) {
   OGRSpatialReference srs;
-  srs.importFromEPSG(4326);
+  //srs.importFromEPSG(4326);
+  srs.SetWellKnownGeogCS("WGS84");
   return srs;
 }
 

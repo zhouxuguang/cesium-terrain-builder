@@ -415,6 +415,7 @@ main(int argc, char *argv[]) {
   command.check();
 
   GDALAllRegister();
+  CPLSetConfigOption("GDAL_FILENAME_IS_UTF8", "NO");
 
   // Set the output type
   if (command.verbosity > 1) {

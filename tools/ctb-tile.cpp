@@ -352,7 +352,7 @@ buildTerrain(const TerrainTiler &tiler, TerrainBuild *command) {
   while (!iter.exhausted()) {
     TerrainTile *tile = *iter;
 
-    // 注意，我是用的GOOGLE格式的瓦片编号，Y坐标是从上到下递增，所以需要转换下
+    // 娉ㄦ剰锛屾垜鏄敤鐨凣OOGLE鏍煎紡鐨勭摝鐗囩紪鍙凤紝Y鍧愭爣鏄粠涓婂埌涓嬮�掑锛屾墍浠ラ渶瑕佽浆鎹笅
     tile->y = (1 << tile->zoom) - 1 - tile->y;
     const string filename = getTileFilename(tile, dirname, "terrain");
 

@@ -33,7 +33,7 @@ namespace ctb {
   typedef unsigned int i_pixel;       ///< A pixel value
   typedef unsigned int i_tile;        ///< A tile coordinate
   typedef unsigned short int i_zoom;  ///< A zoom level
-  typedef uint16_t i_terrain_height;  ///< A terrain tile height
+  typedef int16_t i_terrain_height;  ///< A terrain tile height
 
   // Complex types
   typedef Bounds<i_tile> TileBounds;      ///< Tile extents in tile coordinates

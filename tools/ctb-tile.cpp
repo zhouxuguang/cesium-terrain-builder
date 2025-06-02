@@ -351,9 +351,14 @@ buildTerrain(const TerrainTiler &tiler, TerrainBuild *command) {
 
   while (!iter.exhausted()) {
     TerrainTile *tile = *iter;
+
+    // 注意，我是用的GOOGLE格式的瓦片编号，Y坐标是从上到下递增，所以需要转换下
+    tile->y = (1 << tile->zoom) - 1 - tile->y;
     const string filename = getTileFilename(tile, dirname, "terrain");
 
-    tile->writeFile(filename.c_str());
+    FILE* fp = fopen(filename.c_str(), "wb");
+    tile->writeFile(fp);
+    fclose(fp);
     delete tile;
 
     currentIndex = incrementIterator(iter, currentIndex);
@@ -450,6 +455,7 @@ main(int argc, char *argv[]) {
   // Run the tilers in separate threads
   vector<future<int>> tasks;
   int threadCount = (command.threadCount > 0) ? command.threadCount : CPLGetNumCPUs();
+  //threadCount = 1;
 
   // Instantiate the threads using futures from a packaged_task
   for (int i = 0; i < threadCount ; ++i) {

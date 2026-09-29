@@ -354,6 +354,21 @@ buildTerrain(const TerrainTiler &tiler, TerrainBuild *command) {
 
     // 注意，我是用的GOOGLE格式的瓦片编号，Y坐标是从上到下递增，所以需要转换下
     tile->y = (1 << tile->zoom) - 1 - tile->y;
+
+    // 计算该级别x和y方向总共有多少张瓦片
+    uint32_t    xTiles = 2 << tile->zoom;
+    uint32_t    yTiles = 1 << tile->zoom;
+    if (tile->x < 0 || tile->x >= xTiles)
+    {
+        currentIndex = incrementIterator(iter, currentIndex);
+        continue;
+    }
+    if (tile->y < 0 || tile->y >= yTiles)
+    {
+        currentIndex = incrementIterator(iter, currentIndex);
+        continue;
+    }
+
     const string filename = getTileFilename(tile, dirname, "terrain");
 
     FILE* fp = fopen(filename.c_str(), "wb");

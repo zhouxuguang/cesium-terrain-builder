@@ -989,6 +989,9 @@ GDAL2Tiles::getYTile(int ty, int tz, const Options &options) {
 
 void
 GDAL2Tiles::openInput() {
+  // Disable GDAL's global block cache: it is shared between datasets and its
+  // lock serializes tile generation when many threads are used.
+  CPLSetConfigOption("GDAL_CACHEMAX", "0");
   GDALAllRegister();
   GDALDriverManager *driver_manager = GetGDALDriverManager();
   GDALDriver *out_drv = driver_manager->GetDriverByName(m_tiledriver.c_str());

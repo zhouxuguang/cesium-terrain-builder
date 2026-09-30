@@ -35,6 +35,9 @@ set(HEADERS
   Tile.hpp
   TileCoordinate.hpp
   TilerIterator.hpp
+  G2TOptions.hpp
+  G2TProfiles.hpp
+  G2Tiler.hpp
   types.hpp)
 
 add_library(ctb SHARED
@@ -44,6 +47,7 @@ add_library(ctb SHARED
   TerrainTile.cpp
   GlobalMercator.cpp
   GlobalGeodetic.cpp
+  G2Tiler.cpp
   ${HEADERS})
 target_link_libraries(ctb ${GDAL_LIBRARIES} ${ZLIB_LIBRARIES})
 

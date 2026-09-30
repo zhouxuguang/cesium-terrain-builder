@@ -19,6 +19,10 @@ target_link_libraries(ctb-info ${TOOL_TARGETS})
 add_executable(ctb-extents ctb-extents.cpp)
 target_link_libraries(ctb-extents ${TOOL_TARGETS})
 
+# Add the `gdal2tiles` executable
+add_executable(gdal2tiles gdal2tiles.cpp)
+target_link_libraries(gdal2tiles ${TOOL_TARGETS})
+
 # Install the tools
-set(TOOLS ctb-tile ctb-export ctb-info ctb-extents)
+set(TOOLS ctb-tile ctb-export ctb-info ctb-extents gdal2tiles)
 install(TARGETS ${TOOLS} DESTINATION bin)
